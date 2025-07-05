@@ -1,0 +1,39 @@
+---
+BasedOnStyle: Google
+IndentWidth: 4                 # Google uses 2 by default; 4 is more common in industry
+TabWidth: 4
+UseTab: Never                 # Always use spaces
+ColumnLimit: 130            # Slightly wider than Google’s 80 for modern widescreens
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+ConstructorInitializerIndentWidth: 4
+DerivePointerAlignment: false
+PointerAlignment: Left        # int* ptr instead of int *ptr
+BreakBeforeBraces: Allman     # Google uses Attach, but Allman improves clarity in large codebases
+SortIncludes: true
+IncludeBlocks: Preserve       # Preserve relative include order, don't reorder groups
+
+# Formatting control
+AlignAfterOpenBracket: Align
+AlignEscapedNewlines: Left
+AlignOperands: true
+AlignTrailingComments: true
+
+# Spaces and formatting
+SpaceBeforeParens: ControlStatements # space before if/for/while parens
+SpacesInParentheses: false
+SpacesInAngles: false
+SpacesInContainerLiterals: false
+SpaceBeforeAssignmentOperators: true
+
+# Namespace
+NamespaceIndentation: None     # No extra indentation for namespace contents
+
+# Comments
+CommentPragmas: '^ IWYU pragma:'
+
+# Misc
+ReflowComments: true          # Wrap long comments nicely
+PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyReturnTypeOnItsOwnLine: 60
