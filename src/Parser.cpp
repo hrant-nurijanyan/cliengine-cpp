@@ -63,7 +63,7 @@ bebop::cliengine::Input bebop::cliengine::Parser::parse(const CommandDef& def, i
 
 std::vector<std::string> bebop::cliengine::Parser::extractTokens(int argc, char* argv[]) noexcept
 {
-    return {argv + 1, argv + argc};  // Skipping the program name
+    return {argv + 2, argv + argc};  // Skipping the program name and command name
 }
 
 bebop::cliengine::Parser::RawTokenSplit bebop::cliengine::Parser::splitRawTokens(const std::vector<std::string>& tokens) noexcept
