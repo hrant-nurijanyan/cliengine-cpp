@@ -1,26 +1,10 @@
 #include <cliengine/Engine.hpp>
 
-void bebop::cliengine::Engine::loadPredefinedCommands() noexcept
-{
-#ifndef CLIENGINE_PRECOMPILED_HEADER_PATH
-    std::cerr << "[cliengine] Warning: CLIENGINE_PRECOMPILED_HEADER_PATH macro not defined. No commands loaded.\n";
-    return;
-
-#else
-    if (predefined::commandDefs.empty())
-    {
-        std::cerr << "[cliengine] Warning: Precompiled command definitions are empty.\n";
-    }
-    for (const auto& commandDef : predefined::commandDefs)
-    {
-        commandDefs[commandDef.name] = commandDef;
-    }
-#endif  // CLIENGINE_PRECOMPILED_HEADER_PATH
-}
+#ifdef CLIENGINE_PRECOMPILED_HEADER_PATH
 
 void bebop::cliengine::Engine::registerCallback(const std::string& command, CommandCallback callback) noexcept
 {
-    if (commandDefs.find(command) == commandDefs.end())
+    if (precompiled::commandDefs.find(command) == precompiled::commandDefs.end())
     {
         return;  // silently ignore unknown commands
     }
@@ -37,8 +21,8 @@ bool bebop::cliengine::Engine::execute(int argc, char* argv[]) noexcept
 
     std::string commandName = argv[1];
 
-    const auto defIt = commandDefs.find(commandName);
-    if (defIt == commandDefs.end())  // Unknown command
+    const auto defIt = precompiled::commandDefs.find(commandName);
+    if (defIt == precompiled::commandDefs.end())  // Unknown command
     {
         return false;
     }
@@ -62,3 +46,5 @@ bool bebop::cliengine::Engine::execute(int argc, char* argv[]) noexcept
 
     return true;
 }
+
+#endif CLIENGINE_PRECOMPILED_HEADER_PATH
