@@ -4,7 +4,7 @@
 
 void bebop::cliengine::Engine::registerCallback(const std::string& command, CommandCallback callback) noexcept
 {
-    if (precompiled::commandDefs.find(command) == precompiled::commandDefs.end())
+    if (precompiled::kPrecompiledCommands.find(command) == precompiled::kPrecompiledCommands.end())
     {
         return;  // silently ignore unknown commands
     }
@@ -21,8 +21,8 @@ bool bebop::cliengine::Engine::execute(int argc, char* argv[]) noexcept
 
     std::string commandName = argv[1];
 
-    const auto defIt = precompiled::commandDefs.find(commandName);
-    if (defIt == precompiled::commandDefs.end())  // Unknown command
+    const auto defIt = precompiled::kPrecompiledCommands.find(commandName);
+    if (defIt == precompiled::kPrecompiledCommands.end())  // Unknown command
     {
         return false;
     }
